@@ -119,6 +119,22 @@ Resources:
       FromPort: 0
       ToPort: 65535
       SourceSecurityGroupId: !Ref SecurityGroup
+  SGAllUdpEgress:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId: !Ref SecurityGroup
+      IpProtocol: udp
+      FromPort: 0
+      ToPort: 65535
+      CidrIp: 0.0.0.0/0
+  SGAllUdpSelfIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref SecurityGroup
+      IpProtocol: udp
+      FromPort: 0
+      ToPort: 65535
+      SourceSecurityGroupId: !Ref SecurityGroup
 
   SpotComputeEnv:
     Type: AWS::Batch::ComputeEnvironment
